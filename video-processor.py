@@ -4,12 +4,13 @@ from moviepy.editor import *
 def removeAudio(clip):
     try:
         edit_clip = clip.without_audio()
-        edit_clip.write_videofile("output/final1.mp4")
+        return edit_clip
     except Exception as e:
         print("Error Occured")
+        return 
 
 # function to combine different clips
-def combineClips(list_of_clip, final_clip_number):
+def combineClips(list_of_clips, final_clip_number):
     try:
         combined = concatenate_videoclips(list_of_clips)
         combined.write_videofile("output/final{}.mp4".format(final_clip_number))
@@ -23,6 +24,6 @@ clip4 = VideoFileClip("assets/clip4.mp4")
 
 clips = [clip1, clip2, clip3, clip4]
 
-for clip in clips:
-    removeAudio(clip)
+for i in range(len(clips)):
+    clips[i] = removeAudio(clips[i])
 combineClips(clips, 1)
