@@ -1,6 +1,6 @@
 from moviepy.editor import *
 
-# function to resize video to same size
+
 def resize_clip(clip):
     try:
         return clip.resize(height=360)
@@ -34,14 +34,15 @@ def extract_audio(clip):
         print(e)
         return
 
-clip1 = VideoFileClip("assets/clip1.mp4")
+
+# clip1 = VideoFileClip("assets/clip1.mp4")
 clip2 = VideoFileClip("assets/clip2.mp4")
-clip3 = VideoFileClip("assets/clip5.mp4")
-clip4 = VideoFileClip("assets/clip4.mp4")
+# clip3 = VideoFileClip("assets/clip3.mp4")
+# clip4 = VideoFileClip("assets/clip4.mp4")
 
-clips = [clip1, clip2, clip3, clip4]
+# clips = [clip1, clip2, clip3, clip4]
 
-for i in range(len(clips)):
-    clips[i] = resize_clip(clips[i])
-    clips[i] = remove_audio(clips[i])
-combine_clips(clips, 1)
+# for i in range(len(clips)):
+#     clips[i] = resize_clip(clips[i])
+#     clips[i] = remove_audio(clips[i])
+# combine_clips(clips, 1)
