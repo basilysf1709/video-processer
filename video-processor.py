@@ -1,6 +1,14 @@
 from moviepy.editor import *
 
+# function to trim the clip
+def trim_clip(clip, start, end):
+    try:
+        return clip.subclip(start, end)
+    except Exception as e:
+        print(e)
+        return
 
+# function to resize the clip
 def resize_clip(clip):
     try:
         return clip.resize(height=360)
@@ -34,9 +42,17 @@ def extract_audio(clip):
         print(e)
         return
 
+# function to convert video to gif file
+def convert_clip_to_gif(clip, filename):
+    try:
+        return clip.write_gif(filename)
+    except Exception as e:
+        print(e)
+        return
+
 
 # clip1 = VideoFileClip("assets/clip1.mp4")
-clip2 = VideoFileClip("assets/clip2.mp4")
+# clip2 = VideoFileClip("assets/clip2.mp4")
 # clip3 = VideoFileClip("assets/clip3.mp4")
 # clip4 = VideoFileClip("assets/clip4.mp4")
 
@@ -46,3 +62,6 @@ clip2 = VideoFileClip("assets/clip2.mp4")
 #     clips[i] = resize_clip(clips[i])
 #     clips[i] = remove_audio(clips[i])
 # combine_clips(clips, 1)
+
+
+
