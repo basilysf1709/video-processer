@@ -51,6 +51,7 @@ def convert_clip_to_gif(clip, filename):
         return
 
 
+
 # clip1 = VideoFileClip("assets/clip1.mp4")
 # clip2 = VideoFileClip("assets/clip2.mp4")
 # clip3 = VideoFileClip("assets/clip3.mp4")
