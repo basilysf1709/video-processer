@@ -9,8 +9,9 @@ if (cap.isOpened() == False):
     print("Unable to read video feed")
 
 # Defining the Codec
-fourcc = cv2.VideoWriter_fourcc(*'DIVX')
-out = cv2.VideoWriter('output/final.mp4', fourcc, 20.0, (int(cap.get(3)),int(cap.get(4))) )
+# This is the important part, Codec is basically a compression technology to compress and decode video files
+fourcc = cv2.VideoWriter_fourcc('a', 'v', 'c', '1')
+out = cv2.VideoWriter('output/final2.mp4', fourcc, 20.0, (int(cap.get(3)),int(cap.get(4))) )
 while True:
     ret, frame = cap.read()
     out.write(frame)
