@@ -42,9 +42,9 @@ def color_grade(input_filename, output_filename):
         if ret == True:
             # Add a color grade
             blue, green, red = cv2.split(frame)
-            blue = np.clip(blue * 0.45, 0, 255).astype(np.uint8)  # Increase the blue channel
-            green = np.clip(green * 0.45, 0, 255).astype(np.uint8)  # Decrease the green channel
-            red = np.clip(red * 0.45, 0, 255).astype(np.uint8)  # Increase the red channel
+            blue = np.clip(blue * 0.55, 0, 255).astype(np.uint8)  # Increase the blue channel
+            green = np.clip(green * 0.55, 0, 255).astype(np.uint8)  # Decrease the green channel
+            red = np.clip(red * 0.55, 0, 255).astype(np.uint8)  # Increase the red channel
             frame = cv2.merge((blue, green, red))
 
             cv2.imshow('Frame', frame)
