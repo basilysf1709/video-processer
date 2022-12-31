@@ -1,4 +1,4 @@
-### OpenCV and MoviePy Video Processor
+##### OpenCV and MoviePy Video Processor
 This project is a video processor that uses the OpenCV and MoviePy libraries to edit and enhance videos. The goal is to create a cinematic effect by adding cuts, audio, and color grading to nature videos.
 
 ### Requirements
