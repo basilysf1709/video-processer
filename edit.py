@@ -32,6 +32,7 @@ def combine_clips(list_of_clips, final_clip_number):
         combined.write_videofile("output/final{}.mp4".format(final_clip_number))
     except Exception as e:
         print(e)
+        return
 
 # function to extract audio from a video
 def extract_audio(clip):
