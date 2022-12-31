@@ -18,6 +18,7 @@ def find_frames_per_second(filename):
 def color_grade(input_filename, output_filename):
     # Create a VideoCapture object
     cap = cv2.VideoCapture(input_filename)
+    
 
     if not cap.isOpened():
         print("Error openeing Video File")
@@ -25,36 +26,29 @@ def color_grade(input_filename, output_filename):
     # Defining the Codec
     # This is the important part, Codec is basically a compression technology to compress and decode video files
     fourcc = cv2.VideoWriter_fourcc('a', 'v', 'c', '1')
-    size = (int(cap.get(3)), int(cap.get(4)))
+    width = int(cap.get(3))
+    height = int(cap.get(4))
+    size = (width, height)
     fps = find_frames_per_second(input_filename)
 
     out = cv2.VideoWriter(output_filename, fourcc, fps, size)
 
     while True:
         # This is to resize the frame [Betters way of doing it. This is not goood!!]
-        cv2.namedWindow('Frame1', cv2.WINDOW_NORMAL)
-        cv2.resizeWindow('Frame1', 600, 600)
-        cv2.namedWindow('Frame2', cv2.WINDOW_NORMAL)
-        cv2.resizeWindow('Frame2', 600, 600)
-        cv2.namedWindow('Frame3', cv2.WINDOW_NORMAL)
-        cv2.resizeWindow('Frame3', 600, 600)
+        cv2.namedWindow('Frame', cv2.WINDOW_NORMAL)
+        cv2.resizeWindow('Frame', 600, 600)
 
         ret, frame = cap.read()
-        if ret == True: 
+        if ret == True:
+            # Add a color grade
+            blue, green, red = cv2.split(frame)
+            blue = np.clip(blue * 0.45, 0, 255).astype(np.uint8)  # Increase the blue channel
+            green = np.clip(green * 0.45, 0, 255).astype(np.uint8)  # Decrease the green channel
+            red = np.clip(red * 0.45, 0, 255).astype(np.uint8)  # Increase the red channel
+            frame = cv2.merge((blue, green, red))
+
+            cv2.imshow('Frame', frame)
             out.write(frame)
-            # Color Grading goes on here
-            gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-            filtered_frame = cv2.applyColorMap(gray, cv2.COLORMAP_BONE)
-            blended_frame = cv2.addWeighted(frame, 0.3, filtered_frame, 0.7, 40)
-            # to sharpen the frame
-            laplacian = cv2.Laplacian(frame, cv2.CV_8U)
-            sharpened_frame = cv2.add(frame, laplacian)
-            # To increase the contrast of the frame
-            contrast_frame = cv2.normalize(sharpened_frame, None, 0, 255, cv2.NORM_MINMAX)
-            # To show the frame 
-            cv2.imshow('Frame1', frame)
-            cv2.imshow('Frame2', contrast_frame)
-            cv2.imshow('Frame3', blended_frame)
             # Break if "Q" is pressed on the keyboard
             if cv2.waitKey(1) & 0xFF == ord('q'): break
         else:
