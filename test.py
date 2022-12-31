@@ -1,4 +1,4 @@
-# Tested a lot of things here and I did not want to delete this
+# Tested a lot of things here and I did not want to delete
 
 import cv2
 import numpy as np
