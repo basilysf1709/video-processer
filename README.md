@@ -1,7 +1,7 @@
-### OpenCV and MoviePy Video Processor
+## OpenCV and MoviePy Video Processor
 This project is a video processor that uses the OpenCV and MoviePy libraries to edit and enhance videos. The goal is to create a cinematic effect by adding cuts, audio, and color grading to nature videos.
 
-### Requirements
+## Requirements
 To use this project, you will need to have the following software and libraries installed:
 
 1. Python 3.x
@@ -12,7 +12,7 @@ To use this project, you will need to have the following software and libraries 
 
 ```pip install opencv-python moviepy```
 
-Usage
+## Usage
 To use this project, follow these steps:
 
 Clone this repository to your local machine:
