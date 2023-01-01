@@ -1,6 +1,7 @@
 import cv2
 import numpy as np
 import math
+import sys
 
 # Function to find the frames per second of a video file
 def find_frames_per_second(filename):
@@ -25,13 +26,13 @@ def color_grade(input_filename, output_filename):
 
     # Defining the Codec
     # This is the important part, Codec is basically a compression technology to compress and decode video files
-    fourcc = cv2.VideoWriter_fourcc('a', 'v', 'c', '1')
+    fourcc = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')
     width = int(cap.get(3))
     height = int(cap.get(4))
     size = (width, height)
     fps = find_frames_per_second(input_filename)
 
-    out = cv2.VideoWriter(output_filename, fourcc, fps, size)
+    out = cv2.VideoWriter(output_filename, fourcc, fps, size, cv2.CAP_GSTREAMER)
 
     while True:
         # This is to resize the frame [Betters way of doing it. This is not goood!!]
@@ -39,6 +40,7 @@ def color_grade(input_filename, output_filename):
         cv2.resizeWindow('Frame', 600, 600)
 
         ret, frame = cap.read()
+        print(ret)
         if ret == True:
             # Add a color grade
             blue, green, red = cv2.split(frame)
@@ -54,7 +56,8 @@ def color_grade(input_filename, output_filename):
         else:
             break
 
+    out.release()
     cap.release()
     cv2.destroyAllWindows()
 
-color_grade("assets/clip2.mp4", "output/final.mp4")
+color_grade("output/{}.mp4".format(sys.argv[1]), "output/{}.mp4".format(sys.argv[2]))
