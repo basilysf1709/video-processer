@@ -32,7 +32,7 @@ def color_grade(input_filename, output_filename):
     size = (width, height)
     fps = find_frames_per_second(input_filename)
 
-    out = cv2.VideoWriter(output_filename, fourcc, fps, size, cv2.CAP_GSTREAMER)
+    out = cv2.VideoWriter(output_filename, fourcc, fps, size)
 
     while True:
         # This is to resize the frame [Betters way of doing it. This is not goood!!]
