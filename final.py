@@ -57,7 +57,6 @@ clip3 = VideoFileClip("assets/clip8.mp4")
 clip4 = VideoFileClip("assets/clip4.mp4")
 
 clips = [clip1, clip2, clip3, clip4]
-quote1 = AudioFileClip("quotes/quote1.mp3")
 
 total_time = 0
 for i in range(len(clips)):
@@ -76,5 +75,4 @@ for i in range(len(clips)):
     total_time += 3
 
 combined = concatenate_videoclips(clips)
-videoclip = combined.set_audio(quote1)
 videoclip.write_videofile("output/test.mp4")

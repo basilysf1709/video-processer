@@ -40,7 +40,6 @@ def color_grade(input_filename, output_filename):
         cv2.resizeWindow('Frame', 600, 600)
 
         ret, frame = cap.read()
-        print(ret)
         if ret == True:
             # Add a color grade
             blue, green, red = cv2.split(frame)
